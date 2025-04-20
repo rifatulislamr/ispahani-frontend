@@ -13,6 +13,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Button } from '../ui/button'
+import { FolderOpen } from 'lucide-react'
 
 interface FeeItem {
   id: number
@@ -27,14 +28,14 @@ interface VehicleInformationListProps {
   onAddVehicle: () => void
 }
 
-const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
+const ExpenseInfoListDoc: React.FC<VehicleInformationListProps> = ({
   onAddVehicle,
 }) => {
   const [feeItems, setFeeItems] = useState<FeeItem[]>([
     {
       id: 1,
       particular: 'Tax Token Fee',
-      remarks: '',
+      remarks: 'Annual tax token renewal fee',
       fromDate: '10/02/2025',
       toDate: '10/02/2026',
       amount: '4,490.00',
@@ -42,7 +43,7 @@ const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
     {
       id: 2,
       particular: 'Route Permit Fee',
-      remarks: '',
+      remarks: 'Annual route permit renewal charges',
       fromDate: '13/03/2025',
       toDate: '12/03/2026',
       amount: '12,732.00',
@@ -50,7 +51,7 @@ const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
     {
       id: 3,
       particular: 'Misc Expenses',
-      remarks: '',
+      remarks: 'General maintenance and repairs',
       fromDate: '13/03/2025',
       toDate: '12/03/2026',
       amount: '4,000.00',
@@ -58,7 +59,7 @@ const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
     {
       id: 4,
       particular: '',
-      remarks: '',
+      remarks: 'Pending expense entry',
       fromDate: '',
       toDate: '',
       amount: '',
@@ -66,7 +67,7 @@ const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
     {
       id: 5,
       particular: '',
-      remarks: '',
+      remarks: 'Pending expense entry',
       fromDate: '',
       toDate: '',
       amount: '',
@@ -74,7 +75,7 @@ const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
     {
       id: 6,
       particular: '',
-      remarks: '',
+      remarks: 'Pending expense entry',
       fromDate: '',
       toDate: '',
       amount: '',
@@ -82,7 +83,7 @@ const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
     {
       id: 7,
       particular: '',
-      remarks: '',
+      remarks: 'Pending expense entry',
       fromDate: '',
       toDate: '',
       amount: '',
@@ -90,13 +91,12 @@ const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
     {
       id: 8,
       particular: '',
-      remarks: '',
+      remarks: 'Pending expense entry',
       fromDate: '',
       toDate: '',
       amount: '',
     },
   ])
-
   const handleUpdate = (id: number) => {
     console.log(`Update item with id: ${id}`)
     // Implement update logic here
@@ -104,29 +104,39 @@ const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
   return (
     <div>
       <div className="flex justify-between items-center  mb-4 mx-7 mt-10">
-        <h1 className="text-2xl font-bold">Vehicle Information List</h1>
-        <Button onClick={onAddVehicle}>ADD</Button>
+        <h1 className="text-2xl font-bold flex items-center gap-2">
+          <FolderOpen className="text-amber-600" />
+          Expense Document List
+        </h1>
+        <Button
+          className="bg-yellow-400 hover:bg-yellow-500 text-black"
+          onClick={onAddVehicle}
+        >
+          ADD
+        </Button>
       </div>
       <div className="rounded-md border mx-7 flex justify-center">
-        <Table>
-          <TableHeader className="bg-slate-200">
+        <Table className="shadow-md ">
+          <TableHeader className="bg-amber-100 shadow-md">
             <TableRow>
-              <TableHead className="text-center font-bold text-blue-800 border">
+              <TableHead className="text-center font-bold  border ">
                 Particular
               </TableHead>
-              <TableHead className="text-center font-bold text-blue-800 border">
+              <TableHead className="text-center font-bold  border">
                 Remarks
               </TableHead>
-              <TableHead className="text-center font-bold text-blue-800 border">
+              <TableHead className="text-center font-bold  border">
                 From Date
               </TableHead>
-              <TableHead className="text-center font-bold text-blue-800 border">
+              <TableHead className="text-center font-bold  border">
                 To Date
               </TableHead>
-              <TableHead className="text-center font-bold text-blue-800 border">
+              <TableHead className="text-center font-bold  border">
                 Amount
               </TableHead>
-              <TableHead className="w-[100px]"></TableHead>
+              <TableHead className="text-center font-bold  border">
+                Action
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -148,18 +158,18 @@ const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
                     </div>
                   )}
                 </TableCell>
-                <TableCell className="text-center bg-gray-200 border">
+                <TableCell className="text-center border">
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => handleUpdate(item.id)}
-                    className="text-blue-800 hover:text-blue-600 hover:bg-gray-300"
+                    className=" hover:text-blue-600 hover:bg-gray-300"
                   >
                     Update
                   </Button>
                 </TableCell>
               </TableRow>
-            ))}
+            ))}{' '}
           </TableBody>
         </Table>
       </div>
@@ -167,4 +177,4 @@ const ExpenseInfoList: React.FC<VehicleInformationListProps> = ({
   )
 }
 
-export default ExpenseInfoList
+export default ExpenseInfoListDoc
