@@ -25,7 +25,6 @@ import {
 
 import { Sidebar } from '@/components/ui/sidebar'
 
-
 export function DashboardSidebar() {
   const pathname = usePathname()
 
@@ -77,45 +76,49 @@ export function DashboardSidebar() {
           title: 'Fuel',
           href: '/expense-info-fuel',
         },
+        {
+          title: 'Repair & Maintainence',
+          href: '/expense-info-rep-main',
+        },
       ],
     },
     {
-      title: 'Setup',
+      title: 'Job Card',
       icon: Settings,
       href: '/dashboard/setup',
       subItems: [
         {
-          title: 'Company Info',
-          href: '/dashboard/setup/company-info',
+          title: 'Job Card',
+          href: '/job-card',
         },
-        {
-          title: 'Locations & Sites',
-          href: '/dashboard/setup/locations-sites',
-        },
-        {
-          title: 'Categories',
-          href: '/dashboard/setup/categories',
-        },
-        {
-          title: 'Departments',
-          href: '/dashboard/setup/departments',
-        },
-        {
-          title: 'Cost Centers',
-          href: '/dashboard/setup/cost-centers',
-        },
-        {
-          title: 'Events',
-          href: '/dashboard/setup/events',
-        },
-        {
-          title: 'Inventory',
-          href: '/dashboard/setup/inventory',
-        },
-        {
-          title: 'Options',
-          href: '/dashboard/setup/options',
-        },
+        // {
+        //   title: 'Locations & Sites',
+        //   href: '/dashboard/setup/locations-sites',
+        // },
+        // {
+        //   title: 'Categories',
+        //   href: '/dashboard/setup/categories',
+        // },
+        // {
+        //   title: 'Departments',
+        //   href: '/dashboard/setup/departments',
+        // },
+        // {
+        //   title: 'Cost Centers',
+        //   href: '/dashboard/setup/cost-centers',
+        // },
+        // {
+        //   title: 'Events',
+        //   href: '/dashboard/setup/events',
+        // },
+        // {
+        //   title: 'Inventory',
+        //   href: '/dashboard/setup/inventory',
+        // },
+        // {
+        //   title: 'Options',
+        //   href: '/dashboard/setup/options',
+        // },
       ],
     },
     {
