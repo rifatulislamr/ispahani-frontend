@@ -1,22 +1,30 @@
 'use client'
 import React from 'react'
 import { Button } from '../ui/button'
+import { Car } from 'lucide-react'
 
 interface VehicleInformationListProps {
- 
-    onAddVehicle: () => void
+  onAddVehicle: () => void
 }
 
-const VehicleInformationList: React.FC<VehicleInformationListProps> = ({ onAddVehicle }) => {
+const VehicleInformationList: React.FC<VehicleInformationListProps> = ({
+  onAddVehicle,
+}) => {
   return (
     <div>
       <div className="flex justify-between items-center mb-4 mx-4 mt-10">
-        <h1 className="text-2xl font-bold">Vehicle Information List</h1>
-        <Button onClick={onAddVehicle}>ADD</Button>
+        <h1 className="text-2xl font-bold flex items-center gap-2">
+          <Car className="text-amber-600" /> Vehicle Information List
+        </h1>
+        <Button
+          className="bg-yellow-400 hover:bg-yellow-500 text-black"
+          onClick={onAddVehicle}
+        >
+          ADD
+        </Button>
       </div>
     </div>
-    )
-    }
-
+  )
+}
 
 export default VehicleInformationList

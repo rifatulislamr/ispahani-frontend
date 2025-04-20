@@ -16,6 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Car } from 'lucide-react'
 
 interface VehicleInformationPopUPProps {
   isOpen: boolean
@@ -28,24 +29,25 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
 }) => {
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center overflow-y-auto p-4">
-      <div className="flex flex-col w-full max-w-4xl bg-white border border-gray-300 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-1 bg-black/20 backdrop-blur-sm flex items-center justify-center overflow-y-auto p-4">
+      <div className="flex flex-col w-full max-w-5xl bg-white border mt-10 max-h-[85vh] overflow-y-auto shadow-2xl">
         {/* Header */}
-        <div className="bg-[#40BFC1] p-2 flex justify-between items-center sticky top-0 z-10">
-          <h2 className="text-[#800000] text-3xl font-bold underline">
-            Vehicle Information
-          </h2>
+        <div className="p-4 flex justify-between items-center border-b ">
+          {/* <h2 className="text-2xl font-semibold">Vehicle Information</h2> */}
+          <h1 className="text-2xl font-bold flex items-center gap-2">
+            <Car className="text-amber-600" /> Vehicle Information List
+          </h1>
           <button
             onClick={onClose}
-            className="text-[#800000] text-2xl font-bold"
+            className="text-3xl text-foreground hover:text-foreground/80"
           >
             ×
           </button>
         </div>
 
         {/* Main Form */}
-        <div className="bg-gray-400 p-2">
-          <div className="grid grid-cols-4 gap-x-1 gap-y-1 text-xs">
+        <div className="p-4">
+          <div className="grid grid-cols-4 gap-4">
             {/* Rest of the form content remains the same */}
             {/* Row 1 */}
             <FormField label="Brand" defaultValue="Suzuki" />
@@ -56,7 +58,7 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
               defaultValue=""
               rightElement={
                 <Select defaultValue="kilometer">
-                  <SelectTrigger className="h-6 text-xs">
+                  <SelectTrigger>
                     <SelectValue placeholder="Unit" />
                   </SelectTrigger>
                   <SelectContent>
@@ -81,7 +83,7 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
               defaultValue=""
               rightElement={
                 <Select defaultValue="manual">
-                  <SelectTrigger className="h-6 text-xs">
+                  <SelectTrigger>
                     <SelectValue placeholder="Type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -102,7 +104,7 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
               defaultValue=""
               rightElement={
                 <Select defaultValue="petrol">
-                  <SelectTrigger className="h-6 text-xs">
+                  <SelectTrigger>
                     <SelectValue placeholder="Type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -122,7 +124,7 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
             <FormField label="Reg. Date" defaultValue="17/10/2001" />
             <FormField label="Reg.Renewal date" defaultValue="" />
             <div className="flex flex-col">
-              <div className="text-center bg-gray-300 font-bold">
+              <div className="text-center bg-muted font-medium">
                 (Use F3 to select Name)
               </div>
             </div>
@@ -133,7 +135,7 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
               defaultValue=""
               rightElement={
                 <Select defaultValue="sold">
-                  <SelectTrigger className="h-6 text-xs">
+                  <SelectTrigger>
                     <SelectValue placeholder="Status" />
                   </SelectTrigger>
                   <SelectContent>
@@ -156,7 +158,7 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
               defaultValue=""
               rightElement={
                 <Select defaultValue="company">
-                  <SelectTrigger className="h-6 text-xs">
+                  <SelectTrigger>
                     <SelectValue placeholder="Provider" />
                   </SelectTrigger>
                   <SelectContent>
@@ -173,17 +175,17 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
               defaultValue="Mr. Monir Hossain"
             />
             <div className="flex flex-col">
-              <div className="text-blue-900 font-bold">D.Date</div>
-              <Input className="h-6 text-xs bg-white" defaultValue="" />
-              <div className="text-center bg-gray-300 font-bold">
+              <div className="font-medium">D.Date</div>
+              <Input defaultValue="" />
+              <div className="text-center bg-muted font-medium">
                 (Use F3 to select Name)
               </div>
             </div>
             <FormField label="Driver Tel" defaultValue="01917046147" />
             <div className="flex flex-col">
-              <div className="text-blue-900 font-bold">Location</div>
-              <Input className="h-6 text-xs bg-white" defaultValue="Khulna" />
-              <div className="text-center bg-gray-300 font-bold">
+              <div className="font-medium">Location</div>
+              <Input defaultValue="Khulna" />
+              <div className="text-center bg-muted font-medium">
                 Use F3 to select Name
               </div>
             </div>
@@ -208,7 +210,7 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
               defaultValue=""
               rightElement={
                 <Select defaultValue="lease">
-                  <SelectTrigger className="h-6 text-xs">
+                  <SelectTrigger>
                     <SelectValue placeholder="Type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -230,7 +232,7 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
             <FormField label="Supplier" defaultValue="Uttara Motors Ltd." />
             <FormField label="Lease/Agreement Date" defaultValue="" />
             <div className="col-span-2 flex flex-col">
-              <div className="text-center bg-gray-300 font-bold">
+              <div className="text-center bg-muted font-medium">
                 User Information
               </div>
             </div>
@@ -245,7 +247,7 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
               defaultValue=""
               rightElement={
                 <Select defaultValue="dhaka">
-                  <SelectTrigger className="h-6 text-xs">
+                  <SelectTrigger>
                     <SelectValue placeholder="Location" />
                   </SelectTrigger>
                   <SelectContent>
@@ -256,29 +258,29 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
               }
             />
             <div className="col-span-2">
-              <Table className="border border-gray-500 text-xs">
+              <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="h-6 p-1 text-center font-bold">
+                    <TableHead className="text-center font-medium">
                       User
                     </TableHead>
-                    <TableHead className="h-6 p-1 text-center font-bold">
+                    <TableHead className="text-center font-medium">
                       From Dt
                     </TableHead>
-                    <TableHead className="h-6 p-1 text-center font-bold">
+                    <TableHead className="text-center font-medium">
                       To Dt
                     </TableHead>
-                    <TableHead className="h-6 p-1 text-center font-bold">
+                    <TableHead className="text-center font-medium">
                       Remarks
                     </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="h-6 p-1"></TableCell>
-                    <TableCell className="h-6 p-1"></TableCell>
-                    <TableCell className="h-6 p-1"></TableCell>
-                    <TableCell className="h-6 p-1"></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -348,10 +350,10 @@ interface FormFieldProps {
 function FormField({ label, defaultValue = '', rightElement }: FormFieldProps) {
   return (
     <div className="flex flex-col">
-      <div className="text-blue-900 font-bold">{label}</div>
+      <div className="font-medium">{label}</div>
       <div className="flex">
         <Input
-          className="h-6 text-xs bg-white flex-grow"
+          className="flex-grow"
           defaultValue={defaultValue}
         />
         {rightElement}
