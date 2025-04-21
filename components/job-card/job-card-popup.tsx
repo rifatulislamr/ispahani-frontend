@@ -54,7 +54,7 @@ const JobCardPopUp: React.FC<JobCardPopUPProps> = ({ isOpen, onClose }) => {
           <h2 className="text-2xl font-bold flex items-center gap-2">
             <UserIcon className="text-amber-600" />
             Job Card Information
-          </h2>{' '}
+          </h2>
           <button onClick={onClose} className="text-3xl font-bold">
             ×
           </button>

@@ -34,11 +34,7 @@ export function DashboardSidebar() {
       icon: Home,
       href: '/dashboard/dashboard-overview',
     },
-    // {
-    //   title: 'Assets',
-    //   icon: Home,
-    //   href: '/dashboard/assets',
-    // },
+
     {
       title: 'Alerts',
       icon: Settings,
@@ -53,14 +49,6 @@ export function DashboardSidebar() {
           title: 'Vehicles List',
           href: '/vehicle-information',
         },
-        // {
-        //   title: 'Add Assets',
-        //   href: '/dashboard/assets/add-assets',
-        // },
-        // {
-        //   title: 'Dispose',
-        //   href: '/dashboard/assets/dispose',
-        // },
       ],
     },
     {
@@ -91,68 +79,32 @@ export function DashboardSidebar() {
           title: 'Job Card',
           href: '/job-card',
         },
-        // {
-        //   title: 'Locations & Sites',
-        //   href: '/dashboard/setup/locations-sites',
-        // },
-        // {
-        //   title: 'Categories',
-        //   href: '/dashboard/setup/categories',
-        // },
-        // {
-        //   title: 'Departments',
-        //   href: '/dashboard/setup/departments',
-        // },
-        // {
-        //   title: 'Cost Centers',
-        //   href: '/dashboard/setup/cost-centers',
-        // },
-        // {
-        //   title: 'Events',
-        //   href: '/dashboard/setup/events',
-        // },
-        // {
-        //   title: 'Inventory',
-        //   href: '/dashboard/setup/inventory',
-        // },
-        // {
-        //   title: 'Options',
-        //   href: '/dashboard/setup/options',
-        // },
       ],
     },
     {
-      title: 'Reports',
+      title: 'Indent',
       icon: Settings,
       href: '/dashboard/reports',
       subItems: [
         {
-          title: 'Asset Register',
-          href: '/dashboard/report/asset-register',
+          title: 'Indent List',
+          href: '/indent',
         },
         {
-          title: 'Depreciation Report',
-          href: '/dashboard/report/depreciation-report',
+          title: 'Indent Approve',
+          href: '/indent-approve',
         },
         {
-          title: 'Asset Movement Reprot',
-          href: '/dashboard/report/asset-movement-report',
+          title: 'Material Received',
+          href: '/material-received',
         },
         {
-          title: 'Maintainence Report',
-          href: '/dashboard/report/maintainence-report',
+          title: 'Issue Note',
+          href: '/issue-note',
         },
         {
-          title: 'Disposal Report',
-          href: '/dashboard/report/disposal-Report',
-        },
-        {
-          title: 'Asset Valuation Summery',
-          href: '/dashboard/report/asset-valuation-summery',
-        },
-        {
-          title: 'Accounting Journal Report',
-          href: '/dashboard/report/accounting-Journal-Report',
+          title: 'Bidding Data',
+          href: '/bidding-data-entry',
         },
       ],
     },
