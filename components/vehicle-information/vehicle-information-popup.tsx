@@ -17,6 +17,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Car } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 interface VehicleInformationPopUPProps {
   isOpen: boolean
@@ -334,6 +335,9 @@ const VehicleInformationPopUP: React.FC<VehicleInformationPopUPProps> = ({
               defaultValue="17/10/2013"
             />
             <div className="col-span-2"></div>
+          </div>
+          <div className="mt-6 flex justify-end">
+            <Button type="submit">Submit</Button>
           </div>
         </div>
       </div>

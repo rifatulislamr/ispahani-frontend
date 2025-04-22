@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { UserIcon } from 'lucide-react'
+import { Button } from '../ui/button'
 interface IndentApprovePopUpProps {
   isOpen: boolean
   onClose: () => void
@@ -134,6 +135,9 @@ const IndentApprovePopUp: React.FC<IndentApprovePopUpProps> = ({
                   </RadioGroup>
                 </div>
               </div>
+            </div>
+            <div className="flex justify-end mt-6">
+              <Button type="submit">Submit</Button>
             </div>
           </CardContent>
         </Card>
