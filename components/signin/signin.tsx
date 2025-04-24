@@ -7,7 +7,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Checkbox } from '@/components/ui/checkbox'
 import {
   Card,
   CardContent,
@@ -18,17 +17,15 @@ import {
 } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { EyeIcon, EyeOffIcon, LockIcon } from 'lucide-react'
-import { signIn } from '@/api/signin-api'
 import { toast } from '@/hooks/use-toast'
 
 export default function SignIn() {
+  const router = useRouter()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [rememberMe, setRememberMe] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -42,46 +39,26 @@ export default function SignIn() {
     }
 
     try {
-      const response = await signIn({ username, password })
-      console.log("🚀 ~ handleSubmit ~ response:", response)
-      if (response.error || !response.data) {
-        toast({
-          title: 'Error',
-          description: response.error?.message || 'Failed to signin',
-        })
-      } else {
-        // Log the current user information
-
-        // Store token if remember me is checked
-        if (rememberMe) {
-          localStorage.setItem('authToken', response.data.data.token)
-        }
-        console.log(response.data.data.user)
-        // Store user information in localStorage
-        const { userId, roleId, userCompanies, userLocations, voucherTypes, employeeId } =
-          response.data.data.user
-
-        const userInfo = {
-          userId,
-          roleId,
-          userCompanies,
-          userLocations,
-          voucherTypes,
-          employeeId,
-        }
-        localStorage.setItem('currentUser', JSON.stringify(userInfo))
-        console.log('Current user info stored:', userInfo)
-
-        // Redirect to dashboard
+      if (username === 'Riadchy@gmail.com' && password === 'riad123') {
         router.push('/dashboard')
         toast({
           title: 'Success',
-          description: 'you are signined in',
+          description: 'Successfully signed in',
+        })
+      } else {
+        setError('Wrong email or password')
+        toast({
+          title: 'Error',
+          description: 'Wrong email or password',
         })
       }
     } catch (err) {
       console.error('Login error:', err)
       setError('An unexpected error occurred. Please try again later.')
+      toast({
+        title: 'Error',
+        description: 'Failed to sign in. Please try again.',
+      })
     } finally {
       setIsLoading(false)
     }
@@ -89,25 +66,21 @@ export default function SignIn() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
+      <Card className="shadow-2xl w-[550px] ">
+        <CardHeader>
           <div className="flex justify-center mb-4">
-            <Image
-              src="/logo.webp"
-              alt="Company Logo"
-              width={80}
-              height={80}
-              className=""
-            />
+            <h2 className="text-3xl font-bold text-yellow-400 uppercase ">
+              Ispahani Tea Limited
+            </h2>
           </div>
-          <CardTitle className="text-2xl font-bold text-center">
+          <CardTitle className="text-2xl font-bold text-center capitalize">
             Sign in to your account
           </CardTitle>
           <CardDescription className="text-center">
             Enter your username and password to access your account
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="w-full px-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="username">Username</Label>
@@ -117,6 +90,7 @@ export default function SignIn() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
+                className="hover:border-yellow-400 transition-colors duration-200 border-2"
               />
             </div>
             <div className="space-y-2">
@@ -128,12 +102,13 @@ export default function SignIn() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="hover:border-yellow-400 transition-colors duration-200 border-2"
                 />
                 <Button
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  className="absolute right-0 top-0 h-full px-3 py-2"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
@@ -144,25 +119,17 @@ export default function SignIn() {
                 </Button>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="remember-me"
-                checked={rememberMe}
-                onCheckedChange={(checked) => setRememberMe(checked as boolean)}
-              />
-              <Label
-                htmlFor="remember-me"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Remember me
-              </Label>
-            </div>
             {error && (
               <Alert variant="destructive">
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="w-full bg-yellow-400 mt-10 hover:bg-yellow-500 text-black"
+              variant="default"
+              disabled={isLoading}
+            >
               <LockIcon className="mr-2 h-4 w-4" />
               {isLoading ? 'Signing In...' : 'Sign In'}
             </Button>
@@ -176,161 +143,7 @@ export default function SignIn() {
             Forgot your password?
           </Link>
         </CardFooter>
-      </Card>
+      </Card>{' '}
     </div>
   )
 }
-
-// 'use client'
-
-// import { signIn, SignInRequest, SignInRequestSchema } from '@/api/signin'
-// import { Alert, AlertDescription } from '@/components/ui/alert'
-// import { Button } from '@/components/ui/button'
-// import {
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardFooter,
-//   CardHeader,
-//   CardTitle,
-// } from '@/components/ui/card'
-// import {
-//   Form,
-//   FormControl,
-//   FormField,
-//   FormItem,
-//   FormLabel,
-//   FormMessage,
-// } from '@/components/ui/form'
-// import { Input } from '@/components/ui/input'
-// import { zodResolver } from '@hookform/resolvers/zod'
-// import { EyeIcon, EyeOffIcon, LockIcon } from 'lucide-react'
-// import Image from 'next/image'
-// import Link from 'next/link'
-// import { useRouter } from 'next/navigation'
-// import { useState } from 'react'
-// import { useForm } from 'react-hook-form'
-
-// export default function SignIn() {
-//   const [showPassword, setShowPassword] = useState(false)
-//   const [error, setError] = useState('')
-//   const router = useRouter()
-
-//   const form = useForm<SignInRequest>({
-//     resolver: zodResolver(SignInRequestSchema),
-//     defaultValues: {
-//       username: '',
-//       password: '',
-//     },
-//   })
-
-//   const onSubmit = async (values: SignInRequest) => {
-//     setError('')
-
-//     const response = await signIn({
-//       username: values.username,
-//       password: values.password,
-//     })
-
-//     if (response.error) {
-//       setError(response.error.message)
-//       return
-//     }
-
-//     localStorage.setItem('token', response.data?.token ?? '')
-//     router.replace('/dashboard')
-//   }
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-//       <Card className="w-full max-w-md">
-//         <CardHeader className="space-y-1">
-//           <div className="flex justify-center mb-4">
-//             <Image
-//               src="/logo.webp"
-//               alt="Company Logo"
-//               width={80}
-//               height={80}
-//               className=""
-//             />
-//           </div>
-//           <CardTitle className="text-2xl font-bold text-center">
-//             Sign in to your account
-//           </CardTitle>
-//           <CardDescription className="text-center">
-//             Enter your username and password to access your account
-//           </CardDescription>
-//         </CardHeader>
-//         <CardContent>
-//           <Form {...form}>
-//             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-//               <FormField
-//                 control={form.control}
-//                 name="username"
-//                 render={({ field }) => (
-//                   <FormItem>
-//                     <FormLabel>Username</FormLabel>
-//                     <FormControl>
-//                       <Input {...field} />
-//                     </FormControl>
-//                     <FormMessage />
-//                   </FormItem>
-//                 )}
-//               />
-
-//               <FormField
-//                 control={form.control}
-//                 name="password"
-//                 render={({ field }) => (
-//                   <FormItem>
-//                     <FormLabel>Password</FormLabel>
-//                     <FormControl>
-//                       <div className="relative">
-//                         <Input
-//                           {...field}
-//                           type={showPassword ? 'text' : 'password'}
-//                         />
-//                         <Button
-//                           type="button"
-//                           variant="ghost"
-//                           size="icon"
-//                           className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-//                           onClick={() => setShowPassword(!showPassword)}
-//                         >
-//                           {showPassword ? (
-//                             <EyeOffIcon className="h-4 w-4" />
-//                           ) : (
-//                             <EyeIcon className="h-4 w-4" />
-//                           )}
-//                         </Button>
-//                       </div>
-//                     </FormControl>
-//                     <FormMessage />
-//                   </FormItem>
-//                 )}
-//               />
-
-//               {error && (
-//                 <Alert variant="destructive">
-//                   <AlertDescription>{error}</AlertDescription>
-//                 </Alert>
-//               )}
-
-//               <Button type="submit" className="w-full">
-//                 <LockIcon className="mr-2 h-4 w-4" /> Sign In
-//               </Button>
-//             </form>
-//           </Form>
-//         </CardContent>
-//         <CardFooter className="flex flex-col space-y-2">
-//           <Link
-//             href="/forgot-password"
-//             className="text-sm text-center text-primary hover:underline"
-//           >
-//             Forgot your password?
-//           </Link>
-//         </CardFooter>
-//       </Card>
-//     </div>
-//   )
-// }
